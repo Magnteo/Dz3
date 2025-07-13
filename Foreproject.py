@@ -1,15 +1,16 @@
 # запускати онлі з консолі 
-def parse_input(user_input):
-    cmd, *args = user_input.split()
-    cmd = cmd.strip().lower()
-    return cmd, *args
 
 def main():
     contacts = {}
     print("Welcome to the assistant bot!")
     while True:
         user_input = input("Enter a command: ")
-        command, *args = parse_input(user_input)
+        command_data = parse_input(user_input)
+        if isinstance(command_data ,str):
+            print(command_data)
+            continue
+
+        command, *args = command_data
 
         if command in ["close", "exit"]:
             print("Good bye!")
@@ -39,6 +40,11 @@ def input_error(func):
         except KeyError:
             return"Contact not found."
     return inner
+@input_error
+def parse_input(user_input):
+    cmd, *args = user_input.split()
+    cmd = cmd.strip().lower()
+    return cmd, *args
 
 @input_error
 def add_contact(args, contacts):

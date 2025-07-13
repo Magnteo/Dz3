@@ -1,7 +1,7 @@
 import re
 from typing import Callable
 def generator_numbers(text: str):
-    patern=r'\b\d+\.\d+\b'# отут я признаюь попросив чата щоб він мені допоміг з цим 
+    patern=r' (\d+\.\d+)(?= |$)'# отут я признаюь попросив чата щоб він мені допоміг з цим 
     regularuti=re.findall(patern,text)
     for num in regularuti:
         yield float(num)
