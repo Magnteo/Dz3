@@ -6,9 +6,7 @@ def main():
     while True:
         user_input = input("Enter a command: ")
         command_data = parse_input(user_input)
-        if isinstance(command_data ,str):
-            print(command_data)
-            continue
+
 
         command, *args = command_data
 
@@ -54,18 +52,12 @@ def add_contact(args, contacts):
 @input_error
 def change_contact(args, contacts):
     name, phone = args
-    if name in contacts:
-        contacts[name] = phone
-        return"Contact updated."
-    else:
-        return "Contact not found."
+    contacts[name] = phone
+    return"Contact updated."
 @input_error
 def  show_phone(args, contacts):
     name= args[0]
-    if name in contacts:
-        return contacts[name]
-    else:
-        return"Contact not found."
+    return contacts[name]
 @input_error
 def show_all(args, contacts):
     if not contacts:
